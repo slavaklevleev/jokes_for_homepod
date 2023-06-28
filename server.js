@@ -41,7 +41,10 @@ app.get("/random_joke", function (req, res) {
       res.charset = "utf-8";
       res.send(data.item.text);
     })
-    .catch((err) => res.send("Тут что-то сломалось, сегодня без анекдотов"));
+    .catch((err) => {
+      res.charset = "utf-8";
+      res.send("Тут что-то сломалось, сегодня без анекдотов");
+    });
 });
 
 app.listen(3000, function () {
