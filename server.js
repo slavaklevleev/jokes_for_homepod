@@ -1,29 +1,9 @@
 const express = require("express");
-const fs = require("fs");
-var md5 = require("md5");
+const md5 = require("md5");
 const fetch = require("node-fetch");
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAkc8C17AgeCwqgixs2MU2i2Tvx4WIdy8Q",
-  authDomain: "homepod-jokes.firebaseapp.com",
-  projectId: "homepod-jokes",
-  storageBucket: "homepod-jokes.appspot.com",
-  messagingSenderId: "312153047508",
-  appId: "1:312153047508:web:70cf8e916c5cf9c5d95641"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const apiURL = "http://anecdotica.ru/api";
-
-// app.use(express.static(__dirname + "/public"));
+const app = express()
+const apiURL = "http://anecdotica.ru/api"
 
 app.get("/random_joke", function (req, res) {
   const method = "getRandItemP";
