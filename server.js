@@ -38,12 +38,11 @@ app.get("/random_joke", function (req, res) {
   fetch(readyQuery)
     .then((response) => response.json())
     .then((data) => {
-      res.charset = "utf-8";
-      res.send(data.item.text);
+      res.send(JSON.stringify({text: data.item.text}));
     })
     .catch((err) => {
       res.charset = "utf-8";
-      res.send("Тут что-то сломалось, сегодня без анекдотов");
+      res.send(JSON.stringify({text: "Тут что-то сломалось, сегодня без анекдотов"}));
     });
 });
 
