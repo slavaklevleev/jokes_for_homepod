@@ -1,9 +1,8 @@
 const express = require("express");
 const md5 = require("md5");
 const fetch = require("node-fetch");
-
-const app = express()
-const apiURL = "http://anecdotica.ru/api"
+const app = express();
+const apiURL = "http://anecdotica.ru/api";
 
 app.get("/random_joke", function (req, res) {
   const method = "getRandItemP";
@@ -38,8 +37,11 @@ app.get("/random_joke", function (req, res) {
 
   fetch(readyQuery)
     .then((response) => response.json())
-    .then((data) => res.send(data.item.text))
-    .catch((err) => res.send('Тут что-то сломалось, сегодня без анекдотов'));
+    .then((data) => {
+      res.charset = "utf-8";
+      res.send(data.item.text);
+    })
+    .catch((err) => res.send("Тут что-то сломалось, сегодня без анекдотов"));
 });
 
 app.listen(3000, function () {
